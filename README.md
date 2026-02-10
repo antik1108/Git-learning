@@ -80,18 +80,5 @@ These are the main resources that helped me learn Git:
 
 ---
 
-## 🤝 How You Can Use This Repo
 
-If you are learning Git:
-
-1. Open the `Git-basics-notes/` folder  
-2. Read the notes step by step  
-3. Try the same commands on your own system  
-4. Practice regularly  
-5. Use the resource links above for deeper learning  
-
----
-
-## ✍️ Author
-
-Antik  
+Thank You!
