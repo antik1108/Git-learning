@@ -1,4 +1,32 @@
-# data_types in yml:
+#what is YAML?
+#YAML (YAML Ain't Markup Language) is a human-readable data serialization format
+
+#Why use YAML?
+#1. Readability: YAML is designed to be easy to read and write, making it ideal for configuration files and data exchange between languages with different data structures.
+#2. Simplicity: YAML has a simple syntax that is easy to understand, which can help reduce errors and improve maintainability.
+#3. Flexibility: YAML supports a wide range of data types and structures, including lists, dictionaries, and sets, making it suitable for a variety of applications.
+#4. Language Support: YAML is supported by many programming languages, making it a popular choice for configuration files and data serialization in various software projects.
+
+#Where is YAML used?
+#1. Configuration Files: YAML is commonly used for configuration files in software applications, such as for web servers, databases, and application settings.
+#2. Data Serialization: YAML is used for data serialization, allowing data to be easily stored and transmitted between different systems and programming languages.
+#3. DevOps and Infrastructure as Code: YAML is widely used in DevOps tools and infrastructure as code platforms, such as Ansible, Kubernetes, and Docker Compose, for defining infrastructure and application configurations.
+
+#Why GitHub uses YAML for its Actions?
+#GitHub uses YAML for its Actions because of its readability, simplicity, and flexibility. 
+#YAML allows developers to easily define workflows and configurations for their GitHub Actions in a clear and concise manner. 
+#The use of YAML also enables GitHub Actions to be easily integrated with other tools and services, making it a popular choice for automating tasks and workflows in software development projects hosted on GitHub.
+
+#Basic rules of YAML:
+#1. YAML is case-sensitive.
+#2. YAML uses indentation to indicate nesting. Indentation is typically done with Two spaces (not tabs).
+#3. YAML supports comments, which start with the # character and continue to the end of the line.
+#4. YAML uses a key-value pair format, where keys are followed by a colon and a space, and then the value.
+#5. YAML supports various data types, including strings, integers, floats, booleans, null values, lists (arrays), dictionaries (maps), and sets.
+
+
+
+##### data_types in yml:
 #   - string
 #   - integer
 #   - float
@@ -33,18 +61,23 @@ is_married: no #This is also a boolean (YAML recognizes "no" as false)
 address: null #This is a null value
 additional_info: ~ #This is also a null value (YAML recognizes "~" as null)
 
-#time and date in yml:
+#----------------------------------------------------------------------------------------------------#
+######time and date in yml:
 birthdate: 2005-08-11 #This is a year-month-day format date
 birth: 2005-08-11 00:21:59 #date with time in year-month-day hour:minute:second format
 appointment_time: 2024-06-01T14:30:00Z #This is a datetime in ISO 8601 format - {for me understanding this format is a bit tricky, but it represents a specific point in time (June 1, 2024, at 14:30 UTC)}
+#----------------------------------------------------------------------------------------------------#
 
+
+#####In YAML, collections are used to group multiple values together. There are three main types of collections: lists (arrays), dictionaries (maps), and sets.
 ###collections in yml:
 hobbies: #This is a list (array) of strings
   - coding
   - Traveling
   - teaching
   - true 
-# tams_hobbies: [coding, Traveling, teaching] #This is the same list but in inline format
+# tams_hobbies: [bokbok, sleeping, raguragu] #This is the same list but in inline format
+
 #nested list:
 nested_hobbies:
   - outdoor:
@@ -53,7 +86,7 @@ nested_hobbies:
   - indoor:
       - reading
       - cooking
-
+#------------------------------------#
 ###dictionaries (maps) in yml:
 favorite_colors: #This is a dictionary (map) of key-value pairs
   primary: blue
@@ -72,4 +105,53 @@ favorite_foods: #This is another dictionary with more complex values
   dinner: 
     main_course: pasta
     dessert: ice cream
+#------------------------------------#
+#!!set what is this?
+#In YAML, !!set is a special data type that represents a set, which is an unordered collection of unique values. When you use !!set, it indicates that the values should be treated as a set rather than a list or dictionary. In the example below, we have defined a set called unique_id that contains two unique values: 12345 and 67890. The use of !!set ensures that these values are treated as a set, meaning that they are unique and do not have any specific order.
+unique_id: !!set
+  ? 12345
+  ? 67890
+
+#----------------------------------------------------------------------------------------------------#
+#####what is this? anchors and merge keys in yml:
+default_settings: &default_base #This is an ##anchor## that can be reused later
+  theme: light
+  notifications: true
+
+#what is <<? 
+# Answer: The << is a merge key in YAML that allows you to merge the contents of one mapping (dictionary) into another. It is often used in conjunction with anchors (&) to reuse and extend configurations without having to duplicate the same values multiple times. 
+#In the example below, we have defined a default_settings anchor with some base settings, and then we use the << merge key to include those settings in phone_settings, laptop_settings, and tablet_settings, while also allowing for overrides where necessary.
+
+phone_settings:
+  <<: *default_base #This is a merge key that includes the values from the default_settings anchor 
+laptop_settings:
+  <<: *default_base #This is another merge key that includes the values from the default_settings anchor
+  os: windows 
+
+tablet_settings:
+  <<: *default_base #This is yet another merge key that includes the values from the default_settings anchor
+  theme: dark #Here we are overriding the theme value from the default_settings anchor to dark for tablet_settings. 
+              #So here in the tablet_settings, the theme will be dark instead of light, while in phone_settings and laptop_settings, the theme will remain light as defined in the default_settings anchor.
+
+###This topic is little bit tricky lets understand it with another example:
+
+# What is anchors and aliases in YAML?
+#In YAML, anchors and aliases are used to reuse and reference values within the same document.
+#An anchor is defined using the & symbol followed by a name, and it allows you to assign a name to a value or a collection of values. 
+#An alias is defined using the * symbol followed by the name of the anchor, and it allows you to reference the value or collection of values that were assigned to the anchor.
+#example of aliases and anchors in YAML:
+person1: &person_anchor #This is an anchor that assigns the name "person_anchor" to the value of person1
+  name: Antik Mondal
+  age: 30
+  city: New York
+person2: #This is an alias that references the value of the person_anchor
+  <<: *person_anchor #This is a merge key that includes the values from the person_anchor
+  name: Tams #Here we are overriding the name value from the person_anchor to Tams for person2. So person2 will have the same age and city as person1, but the name will be different (Tams instead of Antik Mondal).
+
+
+#----------------------------------------------------------------------------------------------------#
+##### !!explicit data types in yml:
+zip_code: !!str 12345 #forcing a value to be treated as a string, even if it looks like a number.
+count: !!int "10" #forcing a value to be treated as an integer, even if it's provided as a string.
+
 
