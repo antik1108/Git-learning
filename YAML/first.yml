@@ -1,0 +1,75 @@
+# data_types in yml:
+#   - string
+#   - integer
+#   - float
+#   - boolean
+#   - null 
+
+#strings in yml:
+name: Antik Mondal #This is a string
+name_with_quotes: "Antik Mondal" #This is also a string, but with double quotes
+name_with_single_quotes: 'Antik Mondal' #This is also a string, but with single quotes
+name_with_special_characters: "Antik Mondal's YAML" #This string contains a special character (apostrophe)
+name_with_escaped_characters: "Antik Mondal\nYAML" #This string contains an escaped newline character
+name_with_multiline: "Antik Mondal\nYAML\nExample" #This string spans multiple lines using escaped newline characters
+name_with_unicode: "Antik Mondal \u2764" #This string contains a Unicode character (heart symbol)
+multi_line_string: |
+  This is a multi-line string.
+  It can span multiple lines without needing special characters.
+  Each new line will be preserved in the output.
+multi_line_string_with_indent: >
+  This is another multi-line string.
+  It will be folded into a single line, with newlines replaced by spaces.
+  Indentation will be preserved.
+
+#integers, floats, booleans, and null values in yml:
+age: 30 #This is an integer
+height: 5.9 #This is a float
+
+is_student: false #This is a boolean
+is_employed: yes #This is also a boolean (YAML recognizes "yes" as true)
+is_married: no #This is also a boolean (YAML recognizes "no" as false)
+
+address: null #This is a null value
+additional_info: ~ #This is also a null value (YAML recognizes "~" as null)
+
+#time and date in yml:
+birthdate: 2005-08-11 #This is a year-month-day format date
+birth: 2005-08-11 00:21:59 #date with time in year-month-day hour:minute:second format
+appointment_time: 2024-06-01T14:30:00Z #This is a datetime in ISO 8601 format - {for me understanding this format is a bit tricky, but it represents a specific point in time (June 1, 2024, at 14:30 UTC)}
+
+###collections in yml:
+hobbies: #This is a list (array) of strings
+  - coding
+  - Traveling
+  - teaching
+  - true 
+# tams_hobbies: [coding, Traveling, teaching] #This is the same list but in inline format
+#nested list:
+nested_hobbies:
+  - outdoor:
+      - hiking
+      - biking
+  - indoor:
+      - reading
+      - cooking
+
+###dictionaries (maps) in yml:
+favorite_colors: #This is a dictionary (map) of key-value pairs
+  primary: blue
+  secondary: green
+  tertiary: red
+
+#nested dictionary:
+favorite_foods: #This is another dictionary with more complex values  
+  breakfast: 
+    - eggs
+    - toast
+    - coffee
+  lunch: 
+    - sandwich
+    - salad
+  dinner: 
+    main_course: pasta
+    dessert: ice cream
+
