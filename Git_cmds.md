@@ -5,7 +5,7 @@ _A personal reference of important Git commands and concepts._
 
 ---
 
-## 1 Syntax
+## #1 Syntax
 
 ```bash
 git checkout <branch-name> -- <file-name>
