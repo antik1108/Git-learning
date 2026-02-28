@@ -7,6 +7,21 @@
 #3. Flexibility: YAML supports a wide range of data types and structures, including lists, dictionaries, and sets, making it suitable for a variety of applications.
 #4. Language Support: YAML is supported by many programming languages, making it a popular choice for configuration files and data serialization in various software projects.
 
+#----------------------------------------------------------------------------------------------------#
+##### YAML supports two types of comments: single-line comments and multi-line comments.
+# Single-line comments start with a # symbol and continue until the end of the line.
+# Multi-line comments are enclosed within %YAML:1.2 --- and %YAML:1.2 ... markers.
+
+# This is a single-line comment
+
+%YAML:1.2 ---
+# This is a multi-line comment
+# It can span multiple lines
+# Each line starts with a # symbol
+%YAML:1.2 ...
+
+#----------------------------------------------------------------------------------------------------#
+
 #Where is YAML used?
 #1. Configuration Files: YAML is commonly used for configuration files in software applications, such as for web servers, databases, and application settings.
 #2. Data Serialization: YAML is used for data serialization, allowing data to be easily stored and transmitted between different systems and programming languages.
