@@ -1,7 +1,6 @@
 # Git Learning
 
 
-
 This repository contains my **initial Git & GitHub learning notes**.
 
 When I started learning Git, I only knew a few basic commands like:
